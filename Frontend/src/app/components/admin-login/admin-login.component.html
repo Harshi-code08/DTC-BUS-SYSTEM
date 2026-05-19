@@ -1,0 +1,47 @@
+<div class="login-container">
+
+  <div class="login-card">
+
+    <h2>Delhi Management System</h2>
+    <h4>Admin Login</h4>
+
+    <!-- Username -->
+    <input
+      type="text"
+      [(ngModel)]="username"
+      placeholder="Enter Username"
+    />
+
+    <!-- Password -->
+    <div class="password-box">
+
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        [(ngModel)]="password"
+        placeholder="Enter Password"
+      />
+
+      <button type="button" (click)="showPassword = !showPassword"
+          style="padding: 0.2rem; font-size: 0.75rem; width: 90px; height: 30px; margin-top: 10px;">
+        {{ showPassword ? 'Hide' : 'Show' }}
+      </button>
+
+    </div>
+
+    <!-- Login Button -->
+    <button
+      class="login-btn"
+      (click)="login()"
+      [disabled]="isLoading"
+    >
+      {{ isLoading ? 'Logging in...' : 'Login' }}
+    </button>
+
+    <!-- Error -->
+    <p class="error" *ngIf="error">
+      {{ error }}
+    </p>
+
+  </div>
+
+</div>

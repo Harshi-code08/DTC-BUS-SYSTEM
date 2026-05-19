@@ -1,0 +1,93 @@
+<!-- src/app/components/buses/buses.component.html -->
+
+<div class="page">
+  <div class="page-header">
+    <h2>Bus Management</h2>
+    <button class="btn btn-primary" (click)="openAdd()">+ Add Bus</button>
+  </div>
+
+  <div class="alert success" *ngIf="message">{{ message }}</div>
+  <div class="alert error"   *ngIf="error">{{ error }}</div>
+
+  <!-- Form -->
+  <div class="card form-card" *ngIf="showForm">
+    <h3>{{ isEdit ? 'Edit Bus' : 'Add New Bus' }}</h3>
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Bus Number *</label>
+        <input [(ngModel)]="form.busNumber" placeholder="DL-1C-0001" />
+      </div>
+
+      <div class="form-group">
+        <label>Bus Type *</label>
+        <select [(ngModel)]="form.busType">
+          <option value="AC">AC</option>
+          <option value="NON_AC">NON AC</option>
+          <option value="ELECTRIC">Electric</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Capacity *</label>
+        <input type="number" [(ngModel)]="form.capacity" />
+      </div>
+
+      <div class="form-group">
+        <label>Driver Name *</label>
+        <input [(ngModel)]="form.driverName" placeholder="Ramesh Kumar" />
+      </div>
+
+      <div class="form-group">
+        <label>Driver Contact *</label>
+        <input [(ngModel)]="form.driverContact" placeholder="9876543210" />
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="form.isActive">
+          <option [ngValue]="true">Active</option>
+          <option [ngValue]="false">Inactive</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-ghost" (click)="cancel()">Cancel</button>
+      <button class="btn btn-primary" (click)="save()">💾 Save</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Bus No.</th><th>Type</th><th>Capacity</th>
+          <th>Driver</th><th>Contact</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bus of buses">
+          <td><strong>{{ bus.busNumber }}</strong></td>
+          <td><span class="badge badge-blue">{{ bus.busType }}</span></td>
+          <td>{{ bus.capacity }}</td>
+          <td>{{ bus.driverName }}</td>
+          <td>{{ bus.driverContact }}</td>
+          <td>
+            <span class="badge" [ngClass]="bus.isActive ? 'badge-green' : 'badge-red'">
+              {{ bus.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-ghost btn-sm" (click)="openEdit(bus)">✏️ Edit</button>
+            <button class="btn btn-danger btn-sm" (click)="delete(bus.id!)">🗑️ Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="buses.length === 0">
+          <td colspan="7" class="empty">No buses found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

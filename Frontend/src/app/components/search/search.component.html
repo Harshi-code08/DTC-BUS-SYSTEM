@@ -1,0 +1,48 @@
+<!-- src/app/components/search/search.component.html -->
+
+<div class="page">
+  <div class="page-header"><h2>Search Routes</h2></div>
+
+  <div class="card" style="padding:28px;margin-bottom:20px;text-align:center">
+    <h3 style="margin-bottom:16px">Find Your Route</h3>
+    <p style="color:#64748B;margin-bottom:20px">Search by source, destination, or route name</p>
+    <div class="search-row">
+      <input
+        [(ngModel)]="keyword"
+        placeholder="e.g. Dwarka, ISBT, Nehru Place..."
+        (keyup.enter)="search()"
+      />
+      <button class="btn btn-primary" (click)="search()">🔍 Search</button>
+    </div>
+  </div>
+
+  <div class="alert error" *ngIf="error">{{ error }}</div>
+
+  <div class="card" *ngIf="searched">
+    <div class="card-header">
+      <span><strong>{{ results.length }}</strong> route(s) found for "{{ keyword }}"</span>
+    </div>
+    <table *ngIf="results.length > 0">
+      <thead>
+        <tr>
+          <th>Route No.</th><th>Name</th><th>Source</th><th>Destination</th>
+          <th>Distance</th><th>Stops</th><th>Fare</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of results">
+          <td><strong>{{ r.routeNumber }}</strong></td>
+          <td>{{ r.routeName }}</td>
+          <td>{{ r.sourceStop }}</td>
+          <td>{{ r.destinationStop }}</td>
+          <td>{{ r.totalDistanceKm }} km</td>
+          <td>{{ r.totalStops }}</td>
+          <td>₹{{ r.fare }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="empty" *ngIf="results.length === 0">
+      <p>No routes found for "{{ keyword }}"</p>
+    </div>
+  </div>
+</div>

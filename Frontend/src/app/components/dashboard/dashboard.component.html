@@ -1,0 +1,176 @@
+<div class="app">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">🚌</div>
+      <div class="brand-text">
+        <span class="brand-title">DTC</span>
+        <span class="brand-sub">Admin Panel</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">⊞</span>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/buses" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🚌</span>
+        <span>Buses</span>
+      </a>
+      <a routerLink="/routes" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🗺️</span>
+        <span>Routes</span>
+      </a>
+      <a routerLink="/schedules" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🕐</span>
+        <span>Schedules</span>
+      </a>
+      <a routerLink="/search" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">🔍</span>
+        <span>Search</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="admin-badge">
+        <div class="admin-avatar">A</div>
+        <div>
+          <div class="admin-name">Admin</div>
+          <div class="admin-role">Super Admin</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main">
+
+    <!-- Top Bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Delhi Transport Corporation — System Overview</p>
+      </div>
+      <div class="topbar-right">
+        <div class="live-badge">
+          <span class="live-dot"></span>
+          Live
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats Grid -->
+    <section class="stats-grid">
+
+      <div class="stat-card" style="--accent: #3b82f6; animation-delay: 0s">
+        <div class="stat-top">
+          <div class="stat-icon-wrap" style="background: rgba(59,130,246,0.15)">
+            <span>🚌</span>
+          </div>
+          <div class="stat-badge active">Active {{ activeBuses }}</div>
+        </div>
+        <div class="stat-value" style="color:#3b82f6">{{ totalBuses }}</div>
+        <div class="stat-label">Total Buses</div>
+        <div class="stat-bar">
+          <div class="stat-bar-fill" style="width: 72%; background:#3b82f6"></div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #10b981; animation-delay: 0.1s">
+        <div class="stat-top">
+          <div class="stat-icon-wrap" style="background: rgba(16,185,129,0.15)">
+            <span>🗺️</span>
+          </div>
+          <div class="stat-badge active">Active {{ activeRoutes }}</div>
+        </div>
+        <div class="stat-value" style="color:#10b981">{{ totalRoutes }}</div>
+        <div class="stat-label">Total Routes</div>
+        <div class="stat-bar">
+          <div class="stat-bar-fill" style="width: 60%; background:#10b981"></div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #f59e0b; animation-delay: 0.2s">
+        <div class="stat-top">
+          <div class="stat-icon-wrap" style="background: rgba(245,158,11,0.15)">
+            <span>🕐</span>
+          </div>
+          <div class="stat-badge active">Active {{ activeSchedules }}</div>
+        </div>
+        <div class="stat-value" style="color:#f59e0b">{{ totalSchedules }}</div>
+        <div class="stat-label">Schedules</div>
+        <div class="stat-bar">
+          <div class="stat-bar-fill" style="width: 85%; background:#f59e0b"></div>
+        </div>
+      </div>
+
+      <div class="stat-card" style="--accent: #8b5cf6; animation-delay: 0.3s">
+        <div class="stat-top">
+          <div class="stat-icon-wrap" style="background: rgba(139,92,246,0.15)">
+            <span>📍</span>
+          </div>
+        </div>
+        <div class="stat-value" style="color:#8b5cf6">{{ totalStops }}</div>
+        <div class="stat-label">Total Stops</div>
+        <div class="stat-bar">
+          <div class="stat-bar-fill" style="width: 55%; background:#8b5cf6"></div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Info Row -->
+    <section class="info-row">
+      <div class="info-card">
+        <h3 class="info-title">System Status</h3>
+        <div class="status-list">
+          <div class="status-item">
+            <span class="status-dot green"></span>
+            <span>Bus Tracking</span>
+            <span class="status-val">Online</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot green"></span>
+            <span>Route Engine</span>
+            <span class="status-val">Running</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot amber"></span>
+            <span>Schedule Sync</span>
+            <span class="status-val">Syncing</span>
+          </div>
+          <div class="status-item">
+            <span class="status-dot green"></span>
+            <span>Database</span>
+            <span class="status-val">Healthy</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3 class="info-title">Quick Stats</h3>
+        <div class="quick-list">
+          <div class="quick-item">
+            <span class="quick-label">Fleet Utilization</span>
+            <span class="quick-val blue">72%</span>
+          </div>
+          <div class="quick-item">
+            <span class="quick-label">On-Time Rate</span>
+            <span class="quick-val green">88%</span>
+          </div>
+          <div class="quick-item">
+            <span class="quick-label">Active Drivers</span>
+            <span class="quick-val amber">{{ activeBuses }}</span>
+          </div>
+          <div class="quick-item">
+            <span class="quick-label">Routes Covered</span>
+            <span class="quick-val purple">{{ activeRoutes }}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

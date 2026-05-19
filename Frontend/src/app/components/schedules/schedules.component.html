@@ -1,0 +1,102 @@
+<!-- src/app/components/schedules/schedules.component.html -->
+
+<div class="page">
+  <div class="page-header">
+    <h2>Schedule Management</h2>
+    <button class="btn btn-primary" (click)="openAdd()">+ Add Schedule</button>
+  </div>
+
+  <div class="alert success" *ngIf="message">{{ message }}</div>
+  <div class="alert error"   *ngIf="error">{{ error }}</div>
+
+  <div class="card form-card" *ngIf="showForm">
+    <h3>{{ isEdit ? 'Edit Schedule' : 'Add New Schedule' }}</h3>
+    <div class="form-grid">
+
+      <div class="form-group">
+        <label>Route *</label>
+        <select [(ngModel)]="form.routeId">
+          <option [ngValue]="0" disabled>-- Select Route --</option>
+          <option *ngFor="let r of routes" [ngValue]="r.id">{{ r.routeNumber }} — {{ r.sourceStop }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Bus *</label>
+        <select [(ngModel)]="form.busId">
+          <option [ngValue]="0" disabled>-- Select Bus --</option>
+          <option *ngFor="let b of buses" [ngValue]="b.id">{{ b.busNumber }} ({{ b.busType }})</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Departure Time *</label>
+        <input type="time" [(ngModel)]="form.departureTime" />
+      </div>
+
+      <div class="form-group">
+        <label>Arrival Time *</label>
+        <input type="time" [(ngModel)]="form.arrivalTime" />
+      </div>
+
+      <div class="form-group span2">
+        <label>Operating Days</label>
+        <div class="day-picker">
+          <button
+            *ngFor="let d of ALL_DAYS"
+            class="day-btn"
+            [class.active]="isDaySelected(d)"
+            (click)="toggleDay(d)"
+            type="button">
+            {{ d }}
+          </button>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Status</label>
+        <select [(ngModel)]="form.isActive">
+          <option [ngValue]="true">Active</option>
+          <option [ngValue]="false">Inactive</option>
+        </select>
+      </div>
+
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-ghost" (click)="cancel()">Cancel</button>
+      <button class="btn btn-primary" (click)="save()">💾 Save</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Route</th><th>Bus</th><th>Departure</th><th>Arrival</th>
+          <th>Days</th><th>Status</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of schedules">
+          <td><strong>{{ getRouteLabel(s.routeId) }}</strong></td>
+          <td>{{ getBusLabel(s.busId) }}</td>
+          <td>{{ s.departureTime }}</td>
+          <td>{{ s.arrivalTime }}</td>
+          <td><span class="badge badge-blue">{{ s.scheduleDays }}</span></td>
+          <td>
+            <span class="badge" [ngClass]="s.isActive ? 'badge-green' : 'badge-red'">
+              {{ s.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-ghost btn-sm" (click)="openEdit(s)">✏️</button>
+            <button class="btn btn-danger btn-sm" (click)="delete(s.id!)">🗑️</button>
+          </td>
+        </tr>
+        <tr *ngIf="schedules.length === 0">
+          <td colspan="7" class="empty">No schedules found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
