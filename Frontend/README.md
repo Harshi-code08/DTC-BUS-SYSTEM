@@ -60,7 +60,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 ---
 
-## 🚀 Project Features
+##  Project Features
 
 - User Authentication
 - Bus  Management
@@ -69,7 +69,7 @@ For more information on using the Angular CLI, including detailed command refere
 
 ---
 
-## 🛠️ Technologies Used
+##  Technologies Used
 
 ### Frontend
 - Angular 21
@@ -83,6 +83,6 @@ For more information on using the Angular CLI, including detailed command refere
 - Jakarta Servlet
 - MySQL
 
-## 📄 License
+##  License
 
 This project is developed for educational and academic purposes.
