@@ -57,3 +57,34 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+---
+
+## 🚀 Project Features
+
+- User Authentication
+- Bus Route Management
+- Schedule Management
+- REST API Integration
+- Responsive User Interface
+- Search and Filter Functionality
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- Angular 21
+- TypeScript
+- HTML5
+- CSS3
+- RxJS
+
+### Backend
+- Java
+- Jakarta Servlet
+- MySQL
+
+## 📄 License
+
+This project is developed for educational and academic purposes.
