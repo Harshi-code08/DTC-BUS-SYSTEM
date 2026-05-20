@@ -63,11 +63,9 @@ For more information on using the Angular CLI, including detailed command refere
 ## 🚀 Project Features
 
 - User Authentication
-- Bus Route Management
+- Bus  Management
 - Schedule Management
 - REST API Integration
-- Responsive User Interface
-- Search and Filter Functionality
 
 ---
 
